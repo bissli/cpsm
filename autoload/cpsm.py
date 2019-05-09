@@ -58,7 +58,16 @@ def ctrlp_match_with(**kwargs):
         return ["ERROR:" + ex_str], []
 
 def _ctrlp_match_evalinput():
-    return ctrlp_match_with(**_vim_eval("s:input"))
+    return ctrlp_match_with(
+        items=_vim_eval("a:items"), query=_vim_eval("a:str"),
+        limit=int(_vim_eval("a:limit")), mmode=_vim_eval("a:mmode"),
+        ispath=int(_vim_eval("a:ispath")), crfile=_vim_eval("a:crfile"),
+        highlight_mode=_vim_eval("g:cpsm_highlight_mode"),
+        match_crfile=int(_vim_eval("s:match_crfile")),
+        max_threads=int(_vim_eval("g:cpsm_max_threads")),
+        query_inverting_delimiter=_vim_eval("g:cpsm_query_inverting_delimiter"),
+        regex_line_prefix=_vim_eval("s:regex_line_prefix"),
+        unicode=int(_vim_eval("g:cpsm_unicode")))
 
 def ctrlp_match():
     """
